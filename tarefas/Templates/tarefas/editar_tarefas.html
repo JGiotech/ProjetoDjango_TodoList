@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Tarefa{% endblock %}
+
+{% block content %}
+<h1>Editar Tarefa</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="title" class="form-label">Título da tarefa</label>
+        <input type="text" name="title" id="title" class="form-control" value="{{ tarefa.titulo }}" required>
+    </div>
+
+    <div class="form-check mb-3">
+        <input type="checkbox" name="concluida" id="concluida" class="form-check-input" {% if tarefa.concluida %}checked{% endif %}>
+        <label for="concluida" class="form-check-label">Concluída</label>
+    </div>
+
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a href="{% url 'tarefas_list' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
